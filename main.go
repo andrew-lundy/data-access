@@ -40,7 +40,7 @@ func main() {
 	}
 	fmt.Printf("Connected to database: %v\n", cfg.DBName)
 
-	albums, err := albumsByArtist("John Coltrane")
+	albums, err := AlbumsByArtist("John Coltrane")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -52,18 +52,18 @@ func main() {
 	}
 	fmt.Printf("Album found: %v by %v for $%v\n", album.Title, album.Artist, album.Price)
 
-	albID, err := addAlbum(Album{
-		Title:  "Smokin' at the Half Note",
-		Artist: "Wes Montgomery",
-		Price:  31.52,
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("ID of added album: %v\n", albID)
+	//albID, err := addAlbum(Album{
+	//	Title:  "Smokin' at the Half Note",
+	//	Artist: "Wes Montgomery",
+	//	Price:  31.52,
+	//})
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//fmt.Printf("ID of added album: %v\n", albID)
 }
 
-func albumsByArtist(name string) ([]Album, error) {
+func AlbumsByArtist(name string) ([]Album, error) {
 	var albums []Album
 
 	rows, err := db.Query("SELECT * FROM album WHERE artist = ?", name)
