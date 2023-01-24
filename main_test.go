@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -19,7 +18,7 @@ func albumSlicesAreEqual(a, b []Album) bool {
 }
 
 func TestAlbumsByArtist(t *testing.T) {
-	name := "John Coltrane"
+	//name := "John Coltrane"
 
 	wantedResult := make([]Album, 0)
 	wantedResult = append(wantedResult, Album{
@@ -28,14 +27,18 @@ func TestAlbumsByArtist(t *testing.T) {
 		Artist: "John Coltrane",
 		Price:  56.99,
 	})
-	fmt.Printf("%v", wantedResult)
 
-	albums, err := AlbumsByArtist(name)
-	fmt.Printf("%v & %v", albums, err)
+	albums, err := AlbumsByArtist("John Coltrane")
+	if err != nil {
+		t.Fatalf("Error: %v -- Value of Albums: %v", err, albums)
+	}
 
+	//albums, err := AlbumsByArtist(name)
 	//if err != nil {
 	//	t.Fatalf("Error: %v. Received: %v", err, albums)
 	//}
+	//
+	//t.Errorf("Error: %v, %v", err, albums)
 
 	//gotWantedResult := albumSlicesAreEqual(wantedResult, albums)
 	//fmt.Println(gotWantedResult)
